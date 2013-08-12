@@ -31,6 +31,7 @@ function getMatriks(name, row, col)
 	var maxRand = Math.pow(2,$('#bit-depth-random-val').val());
 	var i = 0;
 	var html = '';
+	var valRand;
 	while (i <= row)
 	{
 		var j = 0;
@@ -52,7 +53,9 @@ function getMatriks(name, row, col)
 			}
 			else
 			{
-				html += '<td><input title="('+i+','+j+')" type="text" name="'+name+'['+i+']['+j+']" class="form-control" placeholder="'+i+','+j+'" value="'+((random == true) ? getRandomInt(0,maxRand) : '')+'"></td>';
+				valRand = ((random == true) ? getRandomInt(0,maxRand) : '');
+				valRand = ((name == 'kernel') ? 0 : valRand);
+				html += '<td><input title="('+i+','+j+')" type="text" name="'+name+'['+i+']['+j+']" class="form-control" placeholder="'+i+','+j+'" value="'+valRand+'"></td>';
 			}
 			j += 1;
 		}
@@ -73,6 +76,17 @@ function getKernel (type)
 				[0,-1,0],
 				[-1,4,-1],
 				[0,-1,0]
+			]
+		},
+		gaussian : {
+			row : 5,
+			col : 5,
+			val : [
+				[1,4,7,4,1],
+				[4,16,26,16,4],
+				[7,26,41,26,7],
+				[4,16,26,16,4],
+				[1,4,7,4,1]
 			]
 		}
 	};
@@ -208,7 +222,7 @@ $(document).ready(function(){
 		$('#dim-kernel-baris').attr('disabled', true);
 		$('#dim-kernel-kolom').attr('disabled', true);
 		$('#bit-depth-random').attr('checked', true);
-		$('#bit-depth-random-val').val(5);
+		$('#bit-depth-random-val').val(3);
 		$('#bit-depth-random-val').attr('disabled', false);
 	});
 
