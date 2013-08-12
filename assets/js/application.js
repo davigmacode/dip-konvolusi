@@ -191,6 +191,8 @@ $(document).ready(function(){
 		console.clear();
 
 		$('#nav-tab-citra').tab('show');
+		$('#mtr-output').html('');
+		$('#tab-debug ul').html('');
 
 		return false;
 	});
