@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8">
+	<title>Konvolusi</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- FONT -->
+	<link type="text/css" rel="stylesheet" href="./assets/font/droid-sans/stylesheet.css" media="screen">
+
+	<!-- CSS -->
+	<link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.min.css" media="screen">
+
+	<!-- HTML5 Shim for IE 6-8 -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="./assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="./assets/icon/favicon.ico">
+
+	<!-- Apple Touch Icons -->
+	<link rel="apple-touch-icon" href="./assets/icon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="./assets/icon/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="./assets/icon/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="./assets/icon/apple-touch-icon-144x144-precomposed.png">
+
+	<style type="text/css">
+
+		table.matrix tr:first-child td, 
+		table.matrix td:first-child {
+			text-align: center;
+			vertical-align: middle !important;
+			font-weight: bold;
+			background-color: #563d7c;
+			color: #fff;
+			padding: 3px !important;
+		}
+
+		td {
+			text-align: center;
+			padding: 5px;
+		}
+
+		table.table-input td{
+			padding: 0 !important;
+		}
+
+		table.table-input td input{
+			border-radius: 0 !important;
+		}
+
+		td.range {
+			background-color: #563d7c;
+			color: #fff;
+		}
+
+		td .form-control {
+			text-align: center;
+			padding: 3px;
+			height: auto;
+			min-width: 50px;
+		}
+
+		.navbar-brand {
+			max-width: none;
+		}
+
+		.table {
+			margin-bottom: 0;
+		}
+
+		.tab-content {
+			overflow: auto;
+			max-height: 450px;
+		}
+
+		.tab-content-alt {
+			overflow: hidden;
+			margin-bottom: 20px;
+			padding: 15px;
+			padding-bottom: 0;
+			border-bottom: 1px solid #ddd;
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+		}
+
+		.panel {
+			padding-bottom: 5px;
+		}
+
+		ul.debug {
+			list-style: none;
+			padding: 0;
+		}
+
+		ul.debug li {
+			margin: 0;
+			padding: 10px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.input-group {
+			margin-bottom: 15px;
+		}
+
+		.nav-tabs > li.active > a,
+		.nav-tabs > li.active > a:hover,
+		.nav-tabs > li.active > a:focus {
+			border-top-color: #563d7c;
+			border-top-width: 2px;
+		}
+
+	</style> 
+
+</head>
+<body>
+
+<div class="navbar">
+	<div class="container">
+		<a href="#" class="navbar-brand">Pengolahan Citra Digital - Konvolusi</a>
+		<p class="navbar-text pull-right">developed by <a href="#" class="navbar-link">davigmacode</a></p>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-3">
+			<form id="input-dimensi">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab-opsi-citra" data-toggle="tab">Set Citra</a></li>
+					<li><a href="#tab-opsi-kernel" data-toggle="tab">Set Kernel</a></li>
+				</ul>
+				<div class="tab-content tab-content-alt">
+					<div class="tab-pane active fade in" id="tab-opsi-citra">
+						<div class="form-group">
+							<label>Dimensi Matriks</label>
+							<div class="row">
+								<div class="col-6">
+									<input type="text" id="dim-citra-baris" name="citra_baris" class="form-control" placeholder="Baris">
+								</div>
+								<div class="col-6">
+									<input type="text" id="dim-citra-kolom" name="citra_kolom" class="form-control" placeholder="Kolom">
+								</div>
+							</div>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input id="bit-depth-random" type="checkbox" value="">
+								isi matriks dengan angka random
+							</label>
+						</div>
+						<div class="input-group">
+							<input type="text" id="bit-depth-random-val" name="bit_random" class="form-control" placeholder="Kedalaman Bit" disabled>
+							<span class="input-group-addon">Bit</span>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="tab-opsi-kernel">
+						<div class="form-group">
+							<label>Tipe Filter</label>
+							<select id="kernel-type" class="form-control">
+								<option value="">Blank</option>
+								<option value="laplacian">Laplacian</option>
+								<option value="compass">Compass</option>
+								<option value="sobel">Sobel</option>
+								<option value="prewitt">Prewitt</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Dimensi Matriks</label>
+							<div class="row">
+								<div class="col-6">
+									<input type="text" id="dim-kernel-baris" name="kernel_baris" class="form-control" placeholder="Baris">
+								</div>
+								<div class="col-6">
+									<input type="text" id="dim-kernel-kolom" name="kernel_kolom" class="form-control" placeholder="Kolom">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div class="panel">
+					<div class="panel-heading">Konfigurasi Matriks</div>
+					<div class="form-group">
+						<label>Dimensi Matriks</label>
+						<div class="row">
+							<div class="col-6">
+								<input type="text" id="dim-citra-baris" name="citra_baris" class="form-control" placeholder="Baris">
+							</div>
+							<div class="col-6">
+								<input type="text" id="dim-citra-kolom" name="citra_kolom" class="form-control" placeholder="Kolom">
+							</div>
+						</div>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input id="bit-depth-random" type="checkbox" value="">
+							isi matriks dengan angka random
+						</label>
+					</div>
+					<div class="input-group">
+						<input type="text" id="bit-depth-random-val" name="bit_random" class="form-control" placeholder="Kedalaman Bit" disabled>
+						<span class="input-group-addon">Bit</span>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="panel-heading">Opsi Matriks Kernel</div>
+					<div class="form-group">
+						<label>Tipe Filter</label>
+						<select id="kernel-type" class="form-control">
+							<option value="">Blank</option>
+							<option value="laplacian">Laplacian</option>
+							<option value="compass">Compass</option>
+							<option value="sobel">Sobel</option>
+							<option value="prewitt">Prewitt</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Dimensi Matriks</label>
+						<div class="row">
+							<div class="col-6">
+								<input type="text" id="dim-kernel-baris" name="kernel_baris" class="form-control" placeholder="Baris">
+							</div>
+							<div class="col-6">
+								<input type="text" id="dim-kernel-kolom" name="kernel_kolom" class="form-control" placeholder="Kolom">
+							</div>
+						</div>
+					</div>
+				</div>-->
+				<table width="100%">
+					<tr>
+						<td colspan="2"><button type="submit" class="btn btn-primary btn-block">Start</button></td>
+					</tr>
+					<tr>
+						<td><button type="button" id="action-reset" class="btn btn-danger btn-block">Reset</button></td>
+						<td><button type="button" id="action-default" class="btn btn-default btn-block">Default</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="col-9">
+			<ul class="nav nav-tabs">
+				<li class="active"><a id="nav-tab-citra" href="#tab-citra" data-toggle="tab">Matriks Citra</a></li>
+				<li><a href="#tab-kernel" data-toggle="tab">Matriks Kernel</a></li>
+				<li><a id="nav-tab-output" href="#tab-output" data-toggle="tab">Matriks Konvolusi</a></li>
+				<li><a href="#tab-debug" data-toggle="tab">Debug</a></li>
+				<a href="#" id="action-eksekusi" class="btn btn-primary btn-small pull-right">Eksekusi</a>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active fade in" id="tab-citra" >
+					<form id="mtr-citra">
+						<table class="table table-bordered matrix table-input"></table>
+					</form>
+				</div>
+				<div class="tab-pane fade" id="tab-kernel">
+					<form id="mtr-kernel">
+						<table class="table table-bordered table-input matrix"></table>
+					</form>
+				</div>
+				<div class="tab-pane fade" id="tab-output">
+					<table id="mtr-output" class="table table-bordered matrix"></table>
+				</div>
+				<div class="tab-pane fade" id="tab-debug">
+					<ul class="debug"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Javascript -->
+<script src="./assets/js/vendor/jquery-1.8.3.min.js"></script>
+<script src="./assets/js/vendor/jquery.serialize-object.js"></script>
+<script src="./assets/js/vendor/bootstrap.min.js"></script>
+<script src="./assets/js/vendor/retina.js"></script>
+<script src="./assets/js/application.js"></script>
+
+</body>
+</html>
