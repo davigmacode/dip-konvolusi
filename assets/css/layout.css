@@ -87,6 +87,16 @@ border-top-width: 2px;
 
 .bs-docs-nav {
 background-color: #563d7c;
+border-radius: 0;
+}
+.bs-docs-nav p {
+color: #cdbfe3;
+}
+.bs-docs-nav a {
+color: #ed9c28;
+}
+.bs-docs-nav a:hover {
+color: #fff;
 }
 .bs-docs-nav .navbar-brand {
 color: #fff;
