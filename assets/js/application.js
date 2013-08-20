@@ -244,17 +244,39 @@ $(document).ready(function(){
 		$('#tab-debug ul').html('');
 	});
 
+	$('#action-help').bind('click', function(e) {
+		e.preventDefault();
+		$('body').chardinJs('start');
+	});
+
 	$('#kernel-type').change(function(){
+
+		var kernelType = {
+			laplacian : {
+				row : 3,
+				col : 3
+			},
+			gaussian : {
+				row : 5,
+				col : 5
+			}
+		};
+
+		var type = $('#kernel-type').val();
 
 		if ($('#kernel-type').val() == '')
 		{
 			$('#dim-kernel-baris').attr('disabled', false);
 			$('#dim-kernel-kolom').attr('disabled', false);
+			$('#dim-kernel-baris').val('');
+			$('#dim-kernel-kolom').val('');
 		}
 		else
 		{
 			$('#dim-kernel-baris').attr('disabled', true);
 			$('#dim-kernel-kolom').attr('disabled', true);
+			$('#dim-kernel-baris').val(kernelType[type].row);
+			$('#dim-kernel-kolom').val(kernelType[type].row);
 		}
 
 	});

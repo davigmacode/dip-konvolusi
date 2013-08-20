@@ -17,6 +17,7 @@
 
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="./assets/css/bootstrap.min.css" media="screen">
+	<link type="text/css" rel="stylesheet" href="./assets/css/chardinjs.css" media="screen">
 	<link type="text/css" rel="stylesheet" href="./assets/css/layout.css" media="screen">
 
 	<!-- HTML5 Shim for IE 6-8 -->
@@ -40,8 +41,13 @@
 
 <div class="navbar bs-docs-nav">
 	<div class="container">
-		<a href="#" class="navbar-brand">Pengolahan Citra Digital - Konvolusi</a>
-		<p class="navbar-text pull-right">developed by <a href="https://github.com/davigmacode" class="navbar-link">davigmacode</a></p>
+		<a href="http://davigmacode.github.io/dip-konvolusi/" class="navbar-brand">Pengolahan Citra Digital - Konvolusi <span class="badge badge-danger">versi 0.7 Beta</span></a>
+		<p class="navbar-text pull-right">
+			developed by davigmacode
+			<a href="http://www.facebook.com/daVigmaCode" target="_blank"><i class="icon-social icon-facebook"></i></a>
+			<a href="http://twitter.com/davigmacode" target="_blank"><i class="icon-social icon-twitter"></i></a>
+			<a href="http://github.com/davigmacode" target="_blank"><i class="icon-social icon-github"></i></a>
+		</p>
 	</div>
 </div>
 
@@ -79,13 +85,10 @@
 					</div>
 					<div class="tab-pane fade" id="tab-opsi-kernel">
 						<div class="form-group">
-							<label>Tipe Filter</label>
+							<label>Tipe Kernel</label>
 							<select id="kernel-type" class="form-control">
 								<option value="">Blank</option>
 								<option value="laplacian">Laplacian</option>
-								<option value="compass">Compass</option>
-								<option value="sobel">Sobel</option>
-								<option value="prewitt">Prewitt</option>
 								<option value="gaussian">Gaussian</option>
 							</select>
 						</div>
@@ -152,22 +155,28 @@
 				</div>-->
 				<table width="100%">
 					<tr>
-						<td colspan="2"><button type="submit" class="btn btn-primary btn-block">Start</button></td>
+						<td colspan="2" data-intro="[2] lalu klik 'start' untuk menampilkan inputan matriks citra dan matriks kernel berdasarkan dari settingan yg ada pada tab 'set citra' dan 'set kernel'" data-position="top"><button type="submit" class="btn btn-primary btn-block">Start</button></td>
 					</tr>
 					<tr>
 						<td><button type="button" id="action-reset" class="btn btn-danger btn-block">Reset</button></td>
-						<td><button type="button" id="action-default" class="btn btn-default btn-block">Default</button></td>
+						<td data-intro="[1] klik 'default' untuk mengisikan settingan default matriks citra dan matriks kernel pada tab 'set citra' dan 'set kernel'" data-position="right"><button type="button" id="action-default" class="btn btn-default btn-block">Default</button></td>
+					</tr>
+					<tr>
+						<td colspan="2"><a href="http://github.com/davigmacode/dip-konvolusi/archive/gh-pages.zip" class="btn btn-default btn-block">Download Source Code</a></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="button" id="action-help" class="start-intro-tour btn btn-danger btn-block">Bantuan</button></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 		<div class="col-9">
 			<ul class="nav nav-tabs">
-				<li class="active"><a id="nav-tab-citra" href="#tab-citra" data-toggle="tab">Matriks Citra</a></li>
-				<li><a href="#tab-kernel" data-toggle="tab">Matriks Kernel</a></li>
-				<li><a id="nav-tab-output" href="#tab-output" data-toggle="tab">Matriks Konvolusi</a></li>
-				<li><a href="#tab-debug" data-toggle="tab">Debug</a></li>
-				<a href="#" id="action-eksekusi" class="btn btn-primary btn-small pull-right">Eksekusi</a>
+				<li class="active"><a id="nav-tab-citra" href="#tab-citra" data-toggle="tab" data-intro="[3] klik tab 'matriks citra' untuk menginputkan nilai pada setiap pixel matriks citra" data-position="bottom">Matriks Citra</a></li>
+				<li><a href="#tab-kernel" data-toggle="tab" data-intro="[4] klik tab 'matriks kernel' untuk menginputkan nilai pada setiap pixel matriks kernel" data-position="bottom">Matriks Kernel</a></li>
+				<li><a id="nav-tab-output" href="#tab-output" data-toggle="tab" data-intro="[6] klik tab 'matriks konvolusi' untuk melihat matriks hasil proses konvolusi" data-position="bottom">Matriks Konvolusi</a></li>
+				<li><a href="#tab-debug" data-toggle="tab" data-intro="[7] klik tab 'debug' untuk melihat perhitungan konvolusi dari setiap pixel" data-position="bottom">Debug</a></li>
+				<a href="#" id="action-eksekusi" class="btn btn-primary btn-small pull-right" data-intro="[5] klik 'eksekusi' untuk melakukan proses konvolusi dari matriks kernel terhadap matriks citra yang telah diinputkan" data-position="bottom">Eksekusi</a>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane active fade in" id="tab-citra" >
@@ -195,6 +204,7 @@
 <script src="./assets/js/vendor/jquery-1.8.3.min.js"></script>
 <script src="./assets/js/vendor/jquery.serialize-object.js"></script>
 <script src="./assets/js/vendor/bootstrap.min.js"></script>
+<script src="./assets/js/vendor/chardinjs.min.js"></script>
 <script src="./assets/js/vendor/retina.js"></script>
 <script src="./assets/js/application.js"></script>
 
